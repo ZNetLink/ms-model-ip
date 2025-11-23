@@ -1,0 +1,45 @@
+{
+    "name": "ms-model-ip",
+    "repo_url": "https://github.com/znetlink/ms-model-ip",
+    "version": "0.1.0",
+    "description": "基础IP/ARP模型",
+    "author": "ZNetLink",
+    "email": "jiazequn@znetlink.com",
+    "license": "GPL-3.0",
+    "labels": [
+        "Network",
+        "网络层"
+    ],
+    "content": {
+        "iconLibraries": [],
+        "scenarios": [],
+        "platforms": [],
+        "devices": [],
+        "processes": [
+            {
+                "model": "models/arp.pr.m",
+                "pyPkgPath": "pycodes/arp"
+            },
+            {
+                "model": "models/ipv4.pr.m",
+                "pyPkgPath": "pycodes/ipv4"
+            }
+        ],
+        "links": [],
+        "traffics": [],
+        "modulations": [],
+        "packets": [
+            "models/arp_v2.pkt.m",
+            "models/ip_dgram_v4.pkt.m"
+        ],
+        "icis": [
+            "models/ip_arp_ind_v4.ici.m",
+            "models/ip_arp_req.ici.m",
+            "models/ip_ind.ici.m",
+            "models/ip_mac_req.ici.m",
+            "models/ip_on_demand_routing_notify.ici.m"
+        ],
+        "metrics": [
+        ]
+    }
+}

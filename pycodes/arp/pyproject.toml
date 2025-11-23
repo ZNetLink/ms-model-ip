@@ -1,0 +1,13 @@
+[project]
+name = "arp"
+version = "0.1.0"
+description = "妙算进程模型 arp"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "miaosuan"
+]
+
+[build-system]
+requires = ["uv_build>=0.9.4,<0.10.0"]
+build-backend = "uv_build"

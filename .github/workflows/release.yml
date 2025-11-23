@@ -1,0 +1,52 @@
+name: Release with Source Hash
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Package Source as ZIP and Calculate Hash
+        id: package
+        run: |
+          # 1. 获取版本号 (例如 v1.0.0)
+          # github.ref_name 在 tag 触发时就是 tag 名称
+          VERSION=${{ github.ref_name }}
+          FILENAME="source-code-${VERSION}.zip"
+          
+          # 2. 打包 ZIP
+          git archive --format=zip --prefix="${{ github.event.repository.name }}-${VERSION}/" --output=$FILENAME HEAD
+          
+          # 3. 计算 SHA256
+          HASH=$(sha256sum $FILENAME | awk '{print $1}')
+          
+          # 4. 输出结果
+          echo "FILENAME=$FILENAME" >> $GITHUB_OUTPUT
+          echo "HASH=$HASH" >> $GITHUB_OUTPUT
+          
+          echo "Generated package: $FILENAME"
+          echo "SHA256: $HASH"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.package.outputs.FILENAME }}
+          generate_release_notes: true
+          body: |
+            ## 🔒 Security Checksums
+            
+            | File | SHA256 Hash |
+            | :--- | :--- |
+            | [${{ steps.package.outputs.FILENAME }}](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/${{ steps.package.outputs.FILENAME }}) | `${{ steps.package.outputs.HASH }}` |
+            
+            ---
+            (Auto-generated release notes below)
