@@ -581,7 +581,7 @@ class ArpProcess:
         dest_protocol_addr = uint32_to_addr(dest_proto_value)
 
         # 更新源地址的ARP缓存条目（学习机制）
-        if src_protocol_addr != ipaddress.IPv4Address("0.0.0.0") and src_hw_addr != 0:
+        if src_protocol_addr != ipaddress.IPv4Address("0.0.0.0"):
             self._update_arp_entry(src_protocol_addr, src_hw_addr, ArpEntryStatus.RESOLVED)
 
         # 检查目标地址是否是本地地址
