@@ -415,7 +415,7 @@ class Ipv4Process:
                 self._broadcast_to_interfaces(pkt, dest_addr)
                 return
 
-        if self.routing_enabled or is_upper_pkt:
+        if self.routing_enabled or is_upper_pkt or pkt.info.re_enter:
             self._determine_next_hop(dest_addr, pkt)
             if pkt.info.out_intf is not None and pkt.info.next_hop is not None:
                 self._forward_to_interface(pkt.info.out_intf, pkt)
@@ -624,4 +624,3 @@ class Ipv4Process:
             return ipaddress.IPv4Network(f"{ip_addr}/{mask_str}", strict=False)
         except Exception as exc:
             raise ValueError(f"ipv4: invalid mask {mask_str!r} for address {ip_addr}") from exc
-
