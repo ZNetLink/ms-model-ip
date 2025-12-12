@@ -288,27 +288,27 @@ class ArpProcess:
             return
 
 
-    @ms.transition("Init", "Wait")
+    @ms.transition("Init", "Wait", "539f8357-0b07-4188-a608-1587972f3b06")
     def init_to_wait(self) -> bool:
         return True
 
-    @ms.transition("Wait", "Wait0")
+    @ms.transition("Wait", "Wait0", "46bb7a57-4ed7-4208-9c19-50b526f01857")
     def wait_to_wait0(self) -> bool:
         return True
 
-    @ms.transition("Wait0", "Wait1")
+    @ms.transition("Wait0", "Wait1", "ae129a17-cfaf-4a7d-a1a0-9ec7784bc430")
     def wait0_to_wait1(self) -> bool:
         return True
 
-    @ms.transition("Wait1", "ArpTable")
+    @ms.transition("Wait1", "ArpTable", "658bdc50-50ff-4b24-abf0-ccfd37c5fda3")
     def wait1_to_arp_table(self) -> bool:
         return True
 
-    @ms.transition("ArpTable", "Idle")
+    @ms.transition("ArpTable", "Idle", "480a1137-30a3-440d-9803-dd42b77d9259")
     def arp_table_to_idle(self) -> bool:
         return True
 
-    @ms.transition("Idle", "Idle")
+    @ms.transition("Idle", "Idle", "e5715e8f-051d-4beb-b0bd-d29fe7e07688")
     def idle_to_idle(self) -> bool:
         return True
 
