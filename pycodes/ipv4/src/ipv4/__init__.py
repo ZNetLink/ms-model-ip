@@ -89,23 +89,23 @@ class Ipv4Process:
             self._handle_stream_interrupt()
 
 
-    @ms.transition("Init", "Wait")
+    @ms.transition("Init", "Wait", "2d11628d-8cba-4c1c-9277-4fd412a19681")
     def init_to_wait(self) -> bool:
         return True
 
-    @ms.transition("Wait", "Wait1")
+    @ms.transition("Wait", "Wait1", "2060978d-1f7b-4d17-abe8-d917ec0494fa")
     def wait_to_wait1(self) -> bool:
         return True
 
-    @ms.transition("Wait1", "Wait2")
+    @ms.transition("Wait1", "Wait2", "bd2262d0-0913-41a8-96c8-8bfa3d71c6af")
     def wait1_to_wait2(self) -> bool:
         return True
 
-    @ms.transition("Wait2", "Idle")
+    @ms.transition("Wait2", "Idle", "fe473555-39b5-4036-a4f6-1b2aaab95103")
     def wait2_to_idle(self) -> bool:
         return True
 
-    @ms.transition("Idle", "Idle")
+    @ms.transition("Idle", "Idle", "5de4ec10-f6ec-421b-8c8a-493b83626336")
     def idle_to_idle(self) -> bool:
         return True
 
